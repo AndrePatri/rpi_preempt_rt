@@ -1,5 +1,5 @@
 #!/bin/bash
-path=$(realpath “${BASH_SOURCE:-$0}”)
+path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 sudo apt install gcc make gcc-arm-linux-gnueabi binutils-arm-linux-gnueabi
 
@@ -19,13 +19,13 @@ wget https://cdn.kernel.org/pub/linux/kernel/projects/rt/5.15/patch-5.15.55-rt48
 tar -xzf linux-5.15.55.tar.gz
 gunzip patch-5.15.55-rt48.patch.gz
 
-cd linux-5.15.55
+#cd linux-5.15.55
 
-cp config-5.15.0-1012-raspi .config
+#cp config-5.15.0-1012-raspi .config
 
 # patch -p1 < ../patch-5.15.55-rt48
 
-yes '' | make oldconfig
+#yes '' | make oldconfig
 
 # make menuconfig
 
