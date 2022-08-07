@@ -20,6 +20,7 @@ echo -e "${BLUE}--> Setting up terminal for showing git branches...${NC}"
 echo -e ""
 
 cp ~/.bashrc ~/.bashrc.bak # making backup copy
+cp /etc/skel/.bashrc ~/ # overwriting possibly already modified bashrc
 
 tee -a ~/.bashrc <<EOF
 
