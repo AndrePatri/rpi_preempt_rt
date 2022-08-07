@@ -81,8 +81,10 @@ make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig # IMPORTANT!!!!!!!!!
 make -j6 bindeb-pkg # generate debs in ../kernel_folder_path
 
 # copying archives to kernel-specific directory
-dump_deb_dir=$kern_vers-$kern_spec
-mkdir ../$dump_deb_dir
-cp ../*.deb ../$dump_deb_dir
+UBUNTU_MAJOR_FULL=$(lsb_release -rs)
+kernel_dir=kern_vers-$kern_spec-$UBUNTU_MAJOR_FULL
+
+mkdir ../$kernel_dir
+cp ../*.deb ../$kernel_dir
 
 rm ../*.deb
