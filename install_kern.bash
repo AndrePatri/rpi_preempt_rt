@@ -7,8 +7,7 @@ kern_spec=rt48
 kern_full_name=$kern_vers-$kern_spec
 
 UBUNTU_MAJOR_FULL=$(lsb_release -rs)
-
-kernel_dir=kern_vers-$kern_spec-$UBUNTU_MAJOR_FULL
+kernel_dir=$kern_vers-$kern_spec-$UBUNTU_MAJOR_FULL
 
 can_hat_name=seeed-can-fd-hat-v2
 

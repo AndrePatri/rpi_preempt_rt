@@ -82,7 +82,7 @@ make -j6 bindeb-pkg # generate debs in ../kernel_folder_path
 
 # copying archives to kernel-specific directory
 UBUNTU_MAJOR_FULL=$(lsb_release -rs)
-kernel_dir=kern_vers-$kern_spec-$UBUNTU_MAJOR_FULL
+kernel_dir=$kern_vers-$kern_spec-$UBUNTU_MAJOR_FULL
 
 mkdir ../$kernel_dir
 cp ../*.deb ../$kernel_dir
