@@ -21,7 +21,7 @@ echo -e ""
 
 cp ~/.bashrc ~/.bashrc.bak # making backup copy
 
-cat < ~/.bashrc <<
+tee -a ~/.bashrc <<EOF
 
 ##############################################
 
@@ -89,7 +89,7 @@ sudo apt upgrade
 
 sudo apt install ros-foxy-ros-base
 
-cat > ~/.bashrc << EOF
+tee -a ~/.bashrc <<EOF
 
 ##############################################
 
