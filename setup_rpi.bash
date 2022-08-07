@@ -89,8 +89,7 @@ sudo apt install ros-foxy-ros-base
 
 tee -a ~/.bashrc <<EOF
 
-##############################################
-
+# sourcing ros env. setup
 . /opt/ros/foxy/setup.bash
 
 EOF
