@@ -23,6 +23,10 @@ export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 EOF
 
+echo ""
+echo "Running a general update and upgrade..."
+echo ""
+
 # updating and upgrading system
 sudo apt update
 
@@ -32,7 +36,7 @@ sudo apt upgrade
 echo ""
 echo "Installing rt kernel..."
 echo ""
-./install_kern.bash
+sudo ./install_kern.bash
 
 # installing stuff
 echo ""
