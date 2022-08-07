@@ -21,7 +21,7 @@ echo -e ""
 
 cp ~/.bashrc ~/.bashrc.bak # making backup copy
 
-cat <> ~/.bashrc 
+cat <> ~/.bashrc <<
 
 ##############################################
 
