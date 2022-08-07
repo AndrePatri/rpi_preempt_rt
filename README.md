@@ -1,6 +1,6 @@
 
 Simple utilities for crosscompiling the Linux kernel for a RPI host and setting it up.
-Used to automate the software setup of [git@github.com:AndPatr/wheebbot_packages.git](git@github.com:AndPatr/wheebbot_packages.git)
+Used to automate the software setup for the [WheeBBot](https://github.com/AndPatr/wheebbot_packages) robot.
 
 On the host pc (crosscompiling kernel):
 
