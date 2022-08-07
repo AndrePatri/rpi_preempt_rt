@@ -52,7 +52,7 @@ sudo ./install_kern.bash
 echo -e ""
 echo -e "${BLUE}--> Installing additional stuff...${NC}"
 echo -e ""
-sudo apt install python3 python3-pip can-utils
+sudo apt install python3 python3-pip can-utils libraspberrypi-bin network-manager
 
 sudo pip3 install --upgrade odrive
 
@@ -94,7 +94,7 @@ tee -a ~/.bashrc <<EOF
 . /opt/ros/foxy/setup.bash
 
 EOF
-
+Installing ROS2 F
 # installing colcon
 echo -e ""
 echo -e "${BLUE}--> Installing colcon build tool...${NC}"

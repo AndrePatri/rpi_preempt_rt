@@ -57,7 +57,8 @@ gunzip patch-$kern_vers-$kern_spec.patch.gz
 echo -e ""
 echo -e "${BLUE}--> Coping base RPI4 config to kernel forlder...${NC}"
 echo -e ""
-cp bcm2711_defconfig linux-$kern_vers/arch/arm64/configs/
+# cp bcm2711_defconfig linux-$kern_vers/arch/arm64/configs/
+cp rpi4_defconfig linux-$kern_vers/arch/arm64/configs/
 
 cd linux-$kern_vers
 
@@ -76,9 +77,9 @@ echo -e ""
 
 make clean
 
-make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig # loads configs for RPI4 CPU
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- rpi4_defconfig # loads configs for RPI4 CPU
 
-make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig # IMPORTANT!!!!!!!!!: load previously generated .config
+# make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig # IMPORTANT!!!!!!!!!: load previously generated .config
 
 # # - Disable virtualization
 #   - -> Virtualization
