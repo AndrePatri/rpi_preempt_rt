@@ -5,6 +5,9 @@ path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 kern_vers=5.15.55
 kern_spec=rt48
 kern_full_name=$kern_vers-$kern_spec
+
+can_hat_name=seeed-can-fd-hat-v2
+
 cd $kern_vers-$kern_spec
 
 sudo apt install ./linux-image-$kern_full_name-v8_$kern_full_name-v8-1_arm64.deb
@@ -58,6 +61,8 @@ kernel=vmlinuz-$KERN
 initramfs initrd.img-$KERN
 os_prefix=$KERN/
 overlay_prefix=overlays/$(if [[ "$KERN" =~ 'v8' ]]; then echo -e "\narm_64bit=1"; fi)
+
 [all]
+dtoverlay=$can_hat_name
 
 EOF

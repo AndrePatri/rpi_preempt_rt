@@ -41,9 +41,11 @@ make clean
 
 make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig # loads configs for RPI4 CPU
 
-#make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig # IMPORTANT!!!!!!!!!: load previously generated .config
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig # IMPORTANT!!!!!!!!!: load previously generated .config
 
-# Disable virtualization (KVM)
+# # - Disable virtualization
+#   - -> Virtualization
+#     - -> N
 
 # # Enable CONFIG_PREEMPT_RT
 #  -> General Setup
@@ -76,8 +78,9 @@ make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig # loads confi
 # choose previously unchosen options
 # make -j6 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs # building
 
-make -j6 bindeb-pkg
+make -j6 bindeb-pkg # generate debs in ../kernel_folder_path
 
+# copying archives to kernel-specific directory
 dump_deb_dir=$kern_vers-$kern_spec
 mkdir ../$dump_deb_dir
 cp ../*.deb ../$dump_deb_dir
