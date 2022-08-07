@@ -1,4 +1,3 @@
-# RPI setup notes
 
 Simple utilities for crosscompiling the linux kernel for a RPI host and setting it up.
 Used to automate the software setup of [git@github.com:AndPatr/wheebbot_packages.git](git@github.com:AndPatr/wheebbot_packages.git)
