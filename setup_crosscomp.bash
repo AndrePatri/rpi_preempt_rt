@@ -19,15 +19,15 @@ wget https://cdn.kernel.org/pub/linux/kernel/projects/rt/5.15/patch-5.15.55-rt48
 tar -xzf linux-5.15.55.tar.gz
 gunzip patch-5.15.55-rt48.patch.gz
 
-#cd linux-5.15.55
+cd linux-5.15.55
 
-#cp config-5.15.0-1012-raspi .config
+cp /boot/config-5.15.0-43-generic .config
 
-# patch -p1 < ../patch-5.15.55-rt48
+patch -p1 < ../patch-5.15.55-rt48.patch
 
-#yes '' | make oldconfig
+yes '' | make oldconfig
 
-# make menuconfig
+make menuconfig
 
 
 ###
@@ -62,5 +62,6 @@ gunzip patch-5.15.55-rt48.patch.gz
 
 
 # ###
-# make ARCH=aarch64 CROSS_COMPILE=aarch64-linux-gnu-gcc 
+# make -j4 ARCH=arm64 CROSS_COMPILE=gcc-aarch64-linux-gnu- deb-pkg
 
+make -j `nproc` deb-pkg
