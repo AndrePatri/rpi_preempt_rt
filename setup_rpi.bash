@@ -46,6 +46,8 @@ sudo apt install python3 python3-pip can-utils cantools
 
 sudo pip3 install --upgrade odrive
 
+pip3 install python-can cantools
+
 # installing ROS2 Foxy
 echo ""
 echo "Installing ROS2 Foxy..."
