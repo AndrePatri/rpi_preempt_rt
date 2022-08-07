@@ -35,6 +35,7 @@ export CROSS_COMPILE=aarch64-linux-gnu-
 # export KERNEL=kernel8
 
 make clean
+
 make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig # loads configs for RPI4 CPU
 
 #make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig # IMPORTANT!!!!!!!!!: load previously generated .config
@@ -70,6 +71,6 @@ make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig # loads confi
 #      (X) performance
 
 # choose previously unchosen options
-make -j6 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs # building
+# make -j6 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs # building
 
 make -j6 bindeb-pkg
