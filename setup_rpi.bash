@@ -28,11 +28,13 @@ sudo apt update
 sudo apt upgrade
 
 # installing fully preemptible kernel
+echo ""
 echo "Installing rt kernel..."
 echo ""
 ./install_kern.bash
 
 # installing stuff
+echo ""
 echo "Installing additional stuff..."
 echo ""
 sudo apt install python3 python3-pip can-utils python-can cantools
@@ -40,6 +42,7 @@ sudo apt install python3 python3-pip can-utils python-can cantools
 sudo pip3 install --upgrade odrive
 
 # installing ROS2 Foxy
+echo ""
 echo "Installing ROS2 Foxy..."
 echo ""
 
