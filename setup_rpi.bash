@@ -42,7 +42,7 @@ sudo ./install_kern.bash
 echo ""
 echo "Installing additional stuff..."
 echo ""
-sudo apt install python3 python3-pip can-utils cantools
+sudo apt install python3 python3-pip can-utils
 
 sudo pip3 install --upgrade odrive
 
