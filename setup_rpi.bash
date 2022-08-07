@@ -19,6 +19,8 @@ echo -e ""
 echo -e "${BLUE}--> Setting up terminal for showing git branches...${NC}"
 echo -e ""
 
+cp ~/.bashrc ~/.bashrc.bak # making backup copy
+
 cat > ~/.bashrc << EOF
 
 ##############################################
@@ -59,7 +61,7 @@ pip3 install python-can cantools
 
 # installing ROS2 Foxy
 echo -e ""
-echo -e"${BLUE}--> Installing ROS2 Foxy...${NC}"
+echo -e "${BLUE}--> Installing ROS2 Foxy...${NC}"
 echo -e ""
 
 locale  # check for UTF-8
