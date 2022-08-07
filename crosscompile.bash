@@ -1,4 +1,16 @@
 #!/bin/bash
+
+#### Modify the following two lines according to the kernel name ####
+#    you want to build. To look for the latest stable kernel, go to #
+#    https://wiki.linuxfoundation.org/realtime/start .              #
+#                                                                   #
+kern_vers=5.15.55                                                   #
+kern_spec=rt48                                                      # 
+#                                                                   #
+#                                                                   #
+#####################################################################
+
+
 path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 RED='\033[0;31m'
@@ -21,11 +33,7 @@ sudo apt install fakeroot
 
 sudo apt install crossbuild-essential-arm64 # crosscompiling toolchain
 
-
 cd $path
-
-kern_vers=5.15.55
-kern_spec=rt48
 
 # git clone --depth=1 https://github.com/raspberrypi/linux
 
