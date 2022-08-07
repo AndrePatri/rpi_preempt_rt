@@ -2,6 +2,8 @@
 
 path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
+set -e # stop, should any of the commands throw errors
+
 kern_vers=5.15.55
 kern_spec=rt48
 kern_full_name=$kern_vers-$kern_spec
