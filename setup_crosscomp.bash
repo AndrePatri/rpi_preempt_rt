@@ -1,16 +1,14 @@
 #!/bin/bash
 path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
-sudo apt install gcc make gcc-arm-linux-gnueabi binutils-arm-linux-gnueabi
-
-sudo apt-get install libncurses-dev flex bison openssl libssl-dev dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf fakeroot
-
-sudo apt-get install libncurses-dev gawk flex bison openssl libssl-dev dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf
-sudo apt-get build-dep linux
+sudo apt install git bc bison flex libssl-dev make libc6-dev libncurses5-dev
+#sudo apt install build-essential fakeroot # fakeroot used for faking a root env. while generating archives and packages
 
 cd path
 
-# git clone git@github.com:AndPatr/rpi_preempt_rt.git
+# git clone --depth=1 https://github.com/raspberrypi/linux
+
+# git checkout -b rpi-5.15.55-rt a4493f3afe
 
 wget https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-5.15.55.tar.gz .
 
@@ -21,16 +19,20 @@ gunzip patch-5.15.55-rt48.patch.gz
 
 cd linux-5.15.55
 
-cp config-5.15.0-1012-raspi .config
-
 patch -p1 < ../patch-5.15.55-rt48.patch
 
-yes '' | make oldconfig
+export ARCH=arm64
+# export KERNEL=kernel8
 
-make menuconfig
+#make clean
+# make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2835_defconfig # generating .config for 
+#make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
 
+#make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig # IMPORTANT!!!!!!!!!: load previously generated .config
 
-###
+# select bcm2835 platform
+
+# Disable virtualization (KVM)
 
 # # Enable CONFIG_PREEMPT_RT
 #  -> General Setup
@@ -60,8 +62,6 @@ make menuconfig
 #     -> Default CPUFreq governor (<choice> [=y])
 #      (X) performance
 
-
-# ###
-# make -j4 ARCH=arm64 CROSS_COMPILE=gcc-aarch64-linux-gnu- deb-pkg
-
-make -j `nproc` deb-pkg
+# choose previously unchosen options
+make -j6 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs # building
+make -j6 bindeb-pkg
