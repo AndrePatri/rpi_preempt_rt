@@ -95,5 +95,12 @@ tee -a ~/.bashrc <<EOF
 
 EOF
 
+# installing colcon
+echo -e ""
+echo -e "${BLUE}--> Installing colcon build tool...${NC}"
+echo -e ""
+
+sudo apt install python3-colcon-common-extensions
+
 # rebooting to apply new kernel
 sudo reboot now
