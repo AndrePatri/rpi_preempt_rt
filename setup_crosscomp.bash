@@ -2,7 +2,13 @@
 path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 sudo apt install git bc bison flex libssl-dev make libc6-dev libncurses5-dev
-#sudo apt install build-essential fakeroot # fakeroot used for faking a root env. while generating archives and packages
+
+sudo apt-get install dpkg-dev # for generating debs
+
+sudo apt install fakeroot
+
+sudo apt install crossbuild-essential-arm64 # crosscompiling toolchain
+
 
 cd path
 
@@ -17,20 +23,21 @@ wget https://cdn.kernel.org/pub/linux/kernel/projects/rt/5.15/patch-5.15.55-rt48
 tar -xzf linux-5.15.55.tar.gz
 gunzip patch-5.15.55-rt48.patch.gz
 
+cp bcm2711_defconfig linux-5.15.55/arch/arm64/configs/
+
 cd linux-5.15.55
 
 patch -p1 < ../patch-5.15.55-rt48.patch
 
 export ARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnu-
+
 # export KERNEL=kernel8
 
-#make clean
-# make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2835_defconfig # generating .config for 
-#make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
+make clean
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig # loads configs for RPI4 CPU
 
 #make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig # IMPORTANT!!!!!!!!!: load previously generated .config
-
-# select bcm2835 platform
 
 # Disable virtualization (KVM)
 
@@ -64,4 +71,5 @@ export ARCH=arm64
 
 # choose previously unchosen options
 make -j6 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs # building
+
 make -j6 bindeb-pkg
