@@ -95,3 +95,4 @@ tee -a ~/.bashrc <<EOF
 EOF
 
 # rebooting to apply new kernel
+sudo reboot now
