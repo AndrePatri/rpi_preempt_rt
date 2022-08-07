@@ -6,6 +6,7 @@ set -e
 cd $path
 
 # setup terminal so that git branches are shown
+echo ""
 echo "Setting up terminal for showing git branches..."
 echo ""
 

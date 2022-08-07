@@ -31,7 +31,7 @@ sudo cp /boot/System.map-$KERN /boot/firmware/$KERN/
 sudo cp /boot/config-$KERN /boot/firmware/$KERN/
 sudo cp /boot/initrd.img-$KERN /boot/firmware/$KERN/
 sudo cp /boot/firmware/config.txt{,.bak}
-sudo cp /boot/cmdline.txt /boot/firmware/$KERN/
+# sudo cp /boot/cmdline.txt /boot/firmware/$KERN/
 sudo cat > /boot/firmware/config.txt << EOF
 
 [pi4]
