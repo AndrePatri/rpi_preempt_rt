@@ -10,24 +10,27 @@ sudo apt install fakeroot
 sudo apt install crossbuild-essential-arm64 # crosscompiling toolchain
 
 
-cd path
+cd $path
+
+kern_vers=5.15.55
+kern_spec=rt48
 
 # git clone --depth=1 https://github.com/raspberrypi/linux
 
 # git checkout -b rpi-5.15.55-rt a4493f3afe
 
-wget https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-5.15.55.tar.gz .
+wget https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$kern_vers.tar.gz .
 
-wget https://cdn.kernel.org/pub/linux/kernel/projects/rt/5.15/patch-5.15.55-rt48.patch.gz .
+wget https://cdn.kernel.org/pub/linux/kernel/projects/rt/5.15/patch-$kern_vers-$kern_spec.patch.gz .
 
-tar -xzf linux-5.15.55.tar.gz
-gunzip patch-5.15.55-rt48.patch.gz
+tar -xzf linux-$kern_vers.tar.gz
+gunzip patch-$kern_vers-$kern_spec.patch.gz
 
-cp bcm2711_defconfig linux-5.15.55/arch/arm64/configs/
+cp bcm2711_defconfig linux-$kern_vers/arch/arm64/configs/
 
-cd linux-5.15.55
+cd linux-$kern_vers
 
-patch -p1 < ../patch-5.15.55-rt48.patch
+patch -p1 < ../patch-$kern_vers-$kern_spec.patch
 
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-linux-gnu-
@@ -74,3 +77,9 @@ make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig # loads confi
 # make -j6 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs # building
 
 make -j6 bindeb-pkg
+
+dump_deb_dir=$kern_vers-$kern_spec
+mkdir ../$dump_deb_dir
+cp ../*.deb ../$dump_deb_dir
+
+rm ../*.deb
