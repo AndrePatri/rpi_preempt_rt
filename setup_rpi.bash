@@ -3,7 +3,7 @@
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
-CYAN=='\033[0;36m'
+CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
@@ -14,7 +14,7 @@ cd $path
 
 # setup terminal so that git branches are shown
 echo -e ""
-echo -e "${CYAN} Setting up terminal for showing git branches...${NC}"
+echo -e "${ORANGE} Setting up terminal for showing git branches...${NC}"
 echo -e ""
 
 cat > ~/.bashrc << EOF
@@ -31,7 +31,7 @@ export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 EOF
 
 echo -e ""
-echo -e "${CYAN}Running a general update and upgrade...${NC}"
+echo -e "${ORANGE}Running a general update and upgrade...${NC}"
 echo -e ""
 
 # updating and upgrading system
@@ -41,13 +41,13 @@ sudo apt upgrade
 
 # installing fully preemptible kernel
 echo -e ""
-echo -e "${CYAN}Installing rt kernel...${NC}"
+echo -e "${ORANGE}Installing rt kernel...${NC}"
 echo -e ""
 sudo ./install_kern.bash
 
 # installing stuff
 echo -e ""
-echo -e "${CYAN}Installing additional stuff...${NC}"
+echo -e "${ORANGE}Installing additional stuff...${NC}"
 echo -e ""
 sudo apt install python3 python3-pip can-utils
 
@@ -57,7 +57,7 @@ pip3 install python-can cantools
 
 # installing ROS2 Foxy
 echo -e ""
-echo -e"${CYAN}Installing ROS2 Foxy...${NC}"
+echo -e"${ORANGE}Installing ROS2 Foxy...${NC}"
 echo -e ""
 
 locale  # check for UTF-8
