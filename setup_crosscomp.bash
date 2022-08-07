@@ -21,7 +21,7 @@ gunzip patch-5.15.55-rt48.patch.gz
 
 cd linux-5.15.55
 
-cp /boot/config-5.15.0-43-generic .config
+cp config-5.15.0-1012-raspi .config
 
 patch -p1 < ../patch-5.15.55-rt48.patch
 
