@@ -5,7 +5,7 @@ path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 kern_vers=5.15.55
 kern_spec=rt48
 kern_full_name=$kern_vers-$kern_spec
-cd kern_vers-kern_spec
+cd $kern_vers-$kern_spec
 
 sudo apt install ./linux-image-$kern_full_name-v8_$kern_full_name-v8-1_arm64.deb
 
