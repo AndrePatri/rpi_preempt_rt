@@ -20,7 +20,8 @@ KERN=$kern_full_name-v8
 
 dpkg -i *.deb
 
-update-initramfs -c -k $KERN
+# update-initramfs -c -k $KERN
+# update-grub
 
 # mkdir -p /boot/firmware/$KERN/overlays/
 # sudo cp -d /usr/lib/linux-image-$KERN/overlays/* /boot/firmware/$KERN/overlays/
