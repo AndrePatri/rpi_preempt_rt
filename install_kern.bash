@@ -5,11 +5,11 @@ path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 set -e # stop, should any of the commands throw errors
 
 kern_vers=5.15.55
-kern_spec=rt48
-kern_full_name=$kern_vers-$kern_spec
+rt_kern_spec=rt48
+kern_full_name=$kern_vers-$rt_kern_spec
 
 UBUNTU_MAJOR_FULL=$(lsb_release -rs)
-kernel_dir=$kern_vers-$kern_spec-$UBUNTU_MAJOR_FULL
+kernel_dir=$kern_vers-$rt_kern_spec-$UBUNTU_MAJOR_FULL
 
 can_hat_name=seeed-can-fd-hat-v2
 
@@ -18,7 +18,9 @@ KERN=$kern_full_name-v8
 
 # apt install ./linux-image-$kern_full_name-v8_$kern_full_name-v8-1_arm64.deb
 
-dpkg -i *.deb
+dpkg -i linux-image-5.15.55-rt48-v8_5.15.55-rt48-v8-1_arm64.deb
+dpkg -i linux-headers-5.15.55-rt48-v8_5.15.55-rt48-v8-1_arm64.deb
+dpkg -i linux-libc-dev_5.15.55-rt48-v8-1_arm64.deb
 
 mkdir -p /boot/firmware/$KERN/overlays/
 cp -d /usr/lib/linux-image-$KERN/overlays/* /boot/firmware/$KERN/overlays/
