@@ -4,12 +4,14 @@
 #    you want to build. To look for the latest stable kernel, go to #
 #    https://wiki.linuxfoundation.org/realtime/start .              #
 #                                                                   #
-kern_vers=5.15.55                                                   #
-kern_spec=rt48                                                      # 
+kern_vers=5
+kern_major=15
+kern_minor=55      
+rt_kern=rt48
+KERN=$kern_vers.$kern_major.$kern_minor-$rt_kern                                          #
 #                                                                   #
 #                                                                   #
 #####################################################################
-
 
 path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
@@ -43,37 +45,36 @@ echo -e ""
 echo -e "${BLUE}--> Downloading kernel archives...${NC}"
 echo -e ""
 
-wget https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$kern_vers.tar.gz 
-#git clone --depth=1 https://github.com/raspberrypi/linux
-
-wget https://cdn.kernel.org/pub/linux/kernel/projects/rt/5.15/patch-$kern_vers-$kern_spec.patch.gz 
+# wget https://mirrors.edge.kernel.org/pub/linux/kernel/v$kern_vers.x/linux-$kern_vers.$kern_major.$kern_minor.tar.gz 
+git clone --depth=1 https://github.com/raspberrypi/linux
+wget https://cdn.kernel.org/pub/linux/kernel/projects/rt/$kern_vers.$kern_major/patch-$KERN.patch.gz 
 
 echo -e ""
 echo -e "${BLUE}--> Extracting archives...${NC}"
 echo -e ""
 
 # tar -xzf linux-$kern_vers.tar.gz
-gunzip patch-$kern_vers-$kern_spec.patch.gz
+gunzip patch-$KERN.patch.gz
 
 echo -e ""
 echo -e "${BLUE}--> Coping base RPI4 config to kernel forlder...${NC}"
 echo -e ""
 # cp bcm2711_defconfig linux-$kern_vers/arch/arm64/configs/
 
-cp rpi4_defconfig linux-$kern_vers/arch/arm64/configs/
-# cp config-5.4.0-1066-raspi_defconfig linux-$kern_vers/arch/arm64/configs/
+# cp rpi4_defconfig linux-$kern_vers.$kern_major.$kern_minor/arch/arm64/configs/
+# cp config-5.4.0-1066-raspi_defconfig linux-$kern_vers.$kern_major.$kern_minor/arch/arm64/configs/
 
-# cp rpi4_defconfig linux/arch/arm64/configs/
+cp rpi4_defconfig linux/arch/arm64/configs/
 
-cd linux-$kern_vers
+# cd linux-$kern_vers
 
-# cd linux
-# git checkout a90998a3e
+cd linux
+git checkout a90998a3e
 
 echo -e ""
 echo -e "${BLUE}--> Applying patch to kernel...${NC}"
 echo -e ""
-patch -p1 < ../patch-$kern_vers-$kern_spec.patch
+patch -p1 < ../patch-$KERN.patch
 
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-linux-gnu-
@@ -136,7 +137,7 @@ echo -e ""
 
 # copying archives to kernel-specific directory
 UBUNTU_MAJOR_FULL=$(lsb_release -rs)
-kernel_dir=$kern_vers-$kern_spec-$UBUNTU_MAJOR_FULL
+kernel_dir=$kern_vers.$kern_major.$kern_minor-$UBUNTU_MAJOR_FULL
 
 mkdir ../$kernel_dir
 cp ../*.deb ../$kernel_dir
