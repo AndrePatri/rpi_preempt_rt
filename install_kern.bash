@@ -20,21 +20,20 @@ apt install ./linux-image-$kern_full_name-v8_$kern_full_name-v8-1_arm64.deb
 
 dpkg -i *.deb
 
-update-initramfs -c -k $KERN
-update-grub
+# update-initramfs -c -k $KERN
 
-# mkdir -p /boot/firmware/$KERN/overlays/
-# sudo cp -d /usr/lib/linux-image-$KERN/overlays/* /boot/firmware/$KERN/overlays/
-# cp -dr /usr/lib/linux-image-$KERN/* /boot/firmware/$KERN/
-# [[ -d /usr/lib/linux-image-$KERN/broadcom ]] && cp -d /usr/lib/linux-image-$KERN/broadcom/* /boot/firmware/$KERN/
+mkdir -p /boot/firmware/$KERN/overlays/
+sudo cp -d /usr/lib/linux-image-$KERN/overlays/* /boot/firmware/$KERN/overlays/
+cp -dr /usr/lib/linux-image-$KERN/* /boot/firmware/$KERN/
+[[ -d /usr/lib/linux-image-$KERN/broadcom ]] && cp -d /usr/lib/linux-image-$KERN/broadcom/* /boot/firmware/$KERN/
 
-# touch /boot/firmware/$KERN/overlays/README
+touch /boot/firmware/$KERN/overlays/README
 
-# cp /boot/vmlinuz-$KERN /boot/firmware/$KERN/
-# cp /boot/System.map-$KERN /boot/firmware/$KERN/
-# cp /boot/config-$KERN /boot/firmware/$KERN/
-# cp /boot/initrd.img-$KERN /boot/firmware/$KERN/
-# cp /boot/firmware/config.txt /boot/firmware/config.bak
+cp /boot/vmlinuz-$KERN /boot/firmware/$KERN/
+cp /boot/System.map-$KERN /boot/firmware/$KERN/
+cp /boot/config-$KERN /boot/firmware/$KERN/
+cp /boot/initrd.img-$KERN /boot/firmware/$KERN/
+cp /boot/firmware/config.txt /boot/firmware/config.bak
 
 # sudo cp /boot/cmdline.txt /boot/firmware/$KERN/
 

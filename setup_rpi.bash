@@ -52,7 +52,7 @@ sudo ./install_kern.bash
 echo -e ""
 echo -e "${BLUE}--> Installing additional stuff...${NC}"
 echo -e ""
-sudo apt install python3 python3-pip can-utils libraspberrypi-bin network-manager
+sudo apt install python3 python3-pip can-utils libraspberrypi-bin network-manager grub2-common
 
 sudo pip3 install --upgrade odrive
 
