@@ -69,3 +69,7 @@ os_prefix=$KERN/
 dtoverlay=$can_hat_name
 
 EOF
+
+echo -e ""
+echo -e "${BLUE}--> Done.${NC}"
+echo -e ""
