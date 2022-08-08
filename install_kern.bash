@@ -2,6 +2,14 @@
 
 path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+PURPLE='\033[0;35m'
+NC='\033[0m' # No Color
+
 set -e # stop, should any of the commands throw errors
 
 kern_vers=5.15.55
@@ -17,11 +25,24 @@ cd $kernel_dir
 KERN=$kern_full_name-v8
 
 # apt install ./linux-image-$kern_full_name-v8_$kern_full_name-v8-1_arm64.deb
-
+echo -e ""
+echo -e "${BLUE}--> Installing image...${NC}"
+echo -e ""
 dpkg -i linux-image-5.15.55-rt48-v8_5.15.55-rt48-v8-1_arm64.deb
+
+echo -e ""
+echo -e "${BLUE}--> Installing headers...${NC}"
+echo -e ""
 dpkg -i linux-headers-5.15.55-rt48-v8_5.15.55-rt48-v8-1_arm64.deb
+
+echo -e ""
+echo -e "${BLUE}--> Installing libc...${NC}"
+echo -e ""
 dpkg -i linux-libc-dev_5.15.55-rt48-v8-1_arm64.deb
 
+echo -e ""
+echo -e "${BLUE}--> Setting up kernel...${NC}"
+echo -e ""
 mkdir -p /boot/firmware/$KERN/overlays/
 cp -d /usr/lib/linux-image-$KERN/overlays/* /boot/firmware/$KERN/overlays/
 cp -dr /usr/lib/linux-image-$KERN/* /boot/firmware/$KERN/
