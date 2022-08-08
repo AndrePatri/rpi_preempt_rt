@@ -44,6 +44,7 @@ echo -e "${BLUE}--> Downloading kernel archives...${NC}"
 echo -e ""
 
 wget https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$kern_vers.tar.gz 
+#git clone --depth=1 https://github.com/raspberrypi/linux
 
 wget https://cdn.kernel.org/pub/linux/kernel/projects/rt/5.15/patch-$kern_vers-$kern_spec.patch.gz 
 
@@ -51,16 +52,23 @@ echo -e ""
 echo -e "${BLUE}--> Extracting archives...${NC}"
 echo -e ""
 
-tar -xzf linux-$kern_vers.tar.gz
+# tar -xzf linux-$kern_vers.tar.gz
 gunzip patch-$kern_vers-$kern_spec.patch.gz
 
 echo -e ""
 echo -e "${BLUE}--> Coping base RPI4 config to kernel forlder...${NC}"
 echo -e ""
 # cp bcm2711_defconfig linux-$kern_vers/arch/arm64/configs/
+
 cp rpi4_defconfig linux-$kern_vers/arch/arm64/configs/
+# cp config-5.4.0-1066-raspi_defconfig linux-$kern_vers/arch/arm64/configs/
+
+# cp rpi4_defconfig linux/arch/arm64/configs/
 
 cd linux-$kern_vers
+
+# cd linux
+# git checkout a90998a3e
 
 echo -e ""
 echo -e "${BLUE}--> Applying patch to kernel...${NC}"

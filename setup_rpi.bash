@@ -94,7 +94,7 @@ tee -a ~/.bashrc <<EOF
 . /opt/ros/foxy/setup.bash
 
 EOF
-Installing ROS2 F
+
 # installing colcon
 echo -e ""
 echo -e "${BLUE}--> Installing colcon build tool...${NC}"
