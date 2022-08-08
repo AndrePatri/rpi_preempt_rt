@@ -20,7 +20,7 @@ apt install ./linux-image-$kern_full_name-v8_$kern_full_name-v8-1_arm64.deb
 
 dpkg -i *.deb
 
--p /boot/firmware/$KERN/overlays/
+mkdir -p /boot/firmware/$KERN/overlays/
 cp -d /usr/lib/linux-image-$KERN/overlays/* /boot/firmware/$KERN/overlays/
 cp -dr /usr/lib/linux-image-$KERN/* /boot/firmware/$KERN/
 [[ -d /usr/lib/linux-image-$KERN/broadcom ]] && cp -d /usr/lib/linux-image-$KERN/broadcom/* /boot/firmware/$KERN/
