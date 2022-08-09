@@ -12,8 +12,11 @@ NC='\033[0m' # No Color
 
 set -e # stop, should any of the commands throw errors
 
+#### Modify the following two lines according to the kernel name ####
 kern_vers=5.15.56
 rt_kern_spec=rt48+
+#####################################################################
+
 kern_full_name=$kern_vers-$rt_kern_spec
 
 UBUNTU_MAJOR_FULL=$(lsb_release -rs)
@@ -43,27 +46,27 @@ dpkg -i linux-libc-dev_"$kern_full_name"-1_arm64.deb
 echo -e ""
 echo -e "${BLUE}--> Setting up kernel...${NC}"
 echo -e ""
-mkdir -p /boot/firmware/$KERN/overlays/
-cp -d /usr/lib/linux-image-$KERN/overlays/* /boot/firmware/$KERN/overlays/
-cp -dr /usr/lib/linux-image-$KERN/* /boot/firmware/$KERN/
-[[ -d /usr/lib/linux-image-$KERN/broadcom ]] && cp -d /usr/lib/linux-image-$KERN/broadcom/* /boot/firmware/$KERN/
+mkdir -p /boot/firmware/$kern_full_name/overlays/
+cp -d /usr/lib/linux-image-$kern_full_name/overlays/* /boot/firmware/$kern_full_name/overlays/
+cp -dr /usr/lib/linux-image-$kern_full_name/* /boot/firmware/$kern_full_name/
+[[ -d /usr/lib/linux-image-$kern_full_name/broadcom ]] && cp -d /usr/lib/linux-image-$kern_full_name/broadcom/* /boot/firmware/$kern_full_name/
 
-touch /boot/firmware/$KERN/overlays/README
+touch /boot/firmware/$kern_full_name/overlays/README
 
-cp /boot/vmlinuz-$KERN /boot/firmware/$KERN/
-cp /boot/System.map-$KERN /boot/firmware/$KERN/
-cp /boot/config-$KERN /boot/firmware/$KERN/
-cp /boot/initrd.img-$KERN /boot/firmware/$KERN/
+cp /boot/vmlinuz-$kern_full_name /boot/firmware/$kern_full_name/
+cp /boot/System.map-$kern_full_name /boot/firmware/$kern_full_name/
+cp /boot/config-$kern_full_name /boot/firmware/$kern_full_name/
+cp /boot/initrd.img-$kern_full_name /boot/firmware/$kern_full_name/
 cp /boot/firmware/config.txt /boot/firmware/config.bak
 
-cp /boot/firmware/cmdline.txt /boot/firmware/$KERN/
+cp /boot/firmware/cmdline.txt /boot/firmware/$kern_full_name/
 
 cat > /boot/firmware/usercfg.txt << EOF
 
 [pi4]
-kernel=vmlinuz-$KERN
-initramfs initrd.img-$KERN
-os_prefix=$KERN/
+kernel=vmlinuz-$kern_full_name
+initramfs initrd.img-$kern_full_name
+os_prefix=$kern_full_name/
 
 [pi4]
 dtoverlay=$can_hat_name
