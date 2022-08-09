@@ -28,7 +28,7 @@ KERN=$kern_full_name-v8
 echo -e ""
 echo -e "${BLUE}--> Installing image...${NC}"
 echo -e ""
-dpkg -i linux-image-$KERN_$KERN-1_arm64.deb
+dpkg -i linux-image-"$KERN"_"$KERN"-1_arm64.deb
 
 echo -e ""
 echo -e "${BLUE}--> Installing headers...${NC}"
