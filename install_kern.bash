@@ -28,17 +28,17 @@ KERN=$kern_full_name-v8
 echo -e ""
 echo -e "${BLUE}--> Installing image...${NC}"
 echo -e ""
-dpkg -i linux-image-"$KERN"_"$KERN"-1_arm64.deb
+dpkg -i linux-image-$kern_full_name_$kern_full_name-1_arm64.deb
 
 echo -e ""
 echo -e "${BLUE}--> Installing headers...${NC}"
 echo -e ""
-dpkg -i linux-headers-$KERN_$KERN-1_arm64.deb
+dpkg -i linux-headers-$kern_full_name_$kern_full_name-1_arm64.deb
 
 echo -e ""
 echo -e "${BLUE}--> Installing libc...${NC}"
 echo -e ""
-dpkg -i linux-libc-dev_$KERN-1_arm64.deb
+dpkg -i linux-libc-dev_$kern_full_name-1_arm64.deb
 
 echo -e ""
 echo -e "${BLUE}--> Setting up kernel...${NC}"
