@@ -137,7 +137,7 @@ echo -e ""
 
 # copying archives to kernel-specific directory
 UBUNTU_MAJOR_FULL=$(lsb_release -rs)
-kernel_dir=$kern_vers.$kern_major.$kern_minor-$UBUNTU_MAJOR_FULL
+kernel_dir=$KERN-$UBUNTU_MAJOR_FULL
 
 mkdir ../$kernel_dir
 cp ../*.deb ../$kernel_dir
