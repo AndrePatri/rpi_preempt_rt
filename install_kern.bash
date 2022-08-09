@@ -12,8 +12,8 @@ NC='\033[0m' # No Color
 
 set -e # stop, should any of the commands throw errors
 
-kern_vers=5.15.55
-rt_kern_spec=rt48
+kern_vers=5.15.56
+rt_kern_spec=rt48+
 kern_full_name=$kern_vers-$rt_kern_spec
 
 UBUNTU_MAJOR_FULL=$(lsb_release -rs)
@@ -28,17 +28,17 @@ KERN=$kern_full_name-v8
 echo -e ""
 echo -e "${BLUE}--> Installing image...${NC}"
 echo -e ""
-dpkg -i linux-image-5.15.55-rt48-v8_5.15.55-rt48-v8-1_arm64.deb
+dpkg -i linux-image-$KERN_$KERN-1_arm64.deb
 
 echo -e ""
 echo -e "${BLUE}--> Installing headers...${NC}"
 echo -e ""
-dpkg -i linux-headers-5.15.55-rt48-v8_5.15.55-rt48-v8-1_arm64.deb
+dpkg -i linux-headers-$KERN_$KERN-1_arm64.deb
 
 echo -e ""
 echo -e "${BLUE}--> Installing libc...${NC}"
 echo -e ""
-dpkg -i linux-libc-dev_5.15.55-rt48-v8-1_arm64.deb
+dpkg -i linux-libc-dev_$KERN-1_arm64.deb
 
 echo -e ""
 echo -e "${BLUE}--> Setting up kernel...${NC}"
@@ -56,7 +56,7 @@ cp /boot/config-$KERN /boot/firmware/$KERN/
 cp /boot/initrd.img-$KERN /boot/firmware/$KERN/
 cp /boot/firmware/config.txt /boot/firmware/config.bak
 
-sudo cp /boot/firmware/cmdline.txt /boot/firmware/$KERN/
+cp /boot/firmware/cmdline.txt /boot/firmware/$KERN/
 
 cat > /boot/firmware/usercfg.txt << EOF
 
